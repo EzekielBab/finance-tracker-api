@@ -35,7 +35,7 @@ A professional RESTful backend service for tracking income, expenses, and genera
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/YOUR_USERNAME/finance-tracker-api.git
+git clone https://github.com/EzekielB8/finance-tracker-api
 cd finance-tracker-api
 ```
 
@@ -232,10 +232,9 @@ This is a portfolio project, but feedback and suggestions are welcome! Feel free
 
 ## 👤 Author
 
-**Your Name**
-- GitHub: [@YOUR_USERNAME](https://github.com/YOUR_USERNAME)
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/your-profile)
-- Portfolio: [yourwebsite.com](https://yourwebsite.com)
+**Ezekiel Babara**
+- GitHub: [@EzekielB8](https://github.com/EzekielB8)
+- LinkedIn: [Ezekiel Babara](https://www.linkedin.com/in/ezekiel-babara-624560281/)
 
 ## 📝 License
 
