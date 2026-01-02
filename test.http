@@ -1,0 +1,165 @@
+### Finance Tracker API Tests
+### Make sure Flask is running: python run.py
+
+#############################
+# POSITIVE TESTS (Should Work)
+#############################
+
+### Test 1: Add Expense
+POST http://127.0.0.1:5000/transactions
+Content-Type: application/json
+
+{
+  "amount": 50,
+  "category": "Food",
+  "type": "expense"
+}
+
+### Test 2: Add Income
+POST http://127.0.0.1:5000/transactions
+Content-Type: application/json
+
+{
+  "amount": 1000,
+  "category": "Salary",
+  "type": "income"
+}
+
+### Test 3: Add Another Expense
+POST http://127.0.0.1:5000/transactions
+Content-Type: application/json
+
+{
+  "amount": 30,
+  "category": "Transport",
+  "type": "expense"
+}
+
+### Test 4: Get All Transactions
+GET http://127.0.0.1:5000/transactions
+
+### Test 5: Get Single Transaction (ID 1)
+GET http://127.0.0.1:5000/transactions/1
+
+### Test 6: Get Monthly Summary (January)
+GET http://127.0.0.1:5000/summary/1
+
+### Test 7: Delete Transaction (ID 1)
+DELETE http://127.0.0.1:5000/transactions/1
+
+
+#############################
+# NEGATIVE TESTS (Should Fail with Errors)
+#############################
+
+### Test 8: Missing Required Fields
+POST http://127.0.0.1:5000/transactions
+Content-Type: application/json
+
+{
+  "amount": 50
+}
+
+### Test 9: Negative Amount
+POST http://127.0.0.1:5000/transactions
+Content-Type: application/json
+
+{
+  "amount": -50,
+  "category": "Food",
+  "type": "expense"
+}
+
+### Test 10: Invalid Transaction Type
+POST http://127.0.0.1:5000/transactions
+Content-Type: application/json
+
+{
+  "amount": 50,
+  "category": "Food",
+  "type": "invalid"
+}
+
+### Test 11: Empty Category
+POST http://127.0.0.1:5000/transactions
+Content-Type: application/json
+
+{
+  "amount": 50,
+  "category": "",
+  "type": "expense"
+}
+
+### Test 12: Invalid Amount (String)
+POST http://127.0.0.1:5000/transactions
+Content-Type: application/json
+
+{
+  "amount": "fifty",
+  "category": "Food",
+  "type": "expense"
+}
+
+### Test 13: Get Non-Existent Transaction
+GET http://127.0.0.1:5000/transactions/999
+
+### Test 14: Delete Non-Existent Transaction
+DELETE http://127.0.0.1:5000/transactions/999
+
+### Test 15: Invalid Month in Summary
+GET http://127.0.0.1:5000/summary/13
+
+
+#############################
+# EDGE CASES
+#############################
+
+### Test 16: Very Large Amount
+POST http://127.0.0.1:5000/transactions
+Content-Type: application/json
+
+{
+  "amount": 999999.99,
+  "category": "Lottery",
+  "type": "income"
+}
+
+### Test 17: Decimal Amount
+POST http://127.0.0.1:5000/transactions
+Content-Type: application/json
+
+{
+  "amount": 12.50,
+  "category": "Coffee",
+  "type": "expense"
+}
+
+### Test 18: Long Category Name
+POST http://127.0.0.1:5000/transactions
+Content-Type: application/json
+
+{
+  "amount": 25,
+  "category": "Very Long Category Name That Should Still Work",
+  "type": "expense"
+}
+
+### Test 19: Category Exactly 50 Characters (Should Work)
+POST http://127.0.0.1:5000/transactions
+Content-Type: application/json
+
+{
+  "amount": 25,
+  "category": "12345678901234567890123456789012345678901234567890",
+  "type": "expense"
+}
+
+### Test 20: Category Over 50 Characters (Should Fail)
+POST http://127.0.0.1:5000/transactions
+Content-Type: application/json
+
+{
+  "amount": 25,
+  "category": "123456789012345678901234567890123456789012345678901",
+  "type": "expense"
+}
